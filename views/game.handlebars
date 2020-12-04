@@ -1,0 +1,906 @@
+<div class="row" style="margin:0;">
+	<div id="board" class="col-md-5"></div>
+	<div class="offset-md-2"></div>
+	<div id="logBox" class="col-md-5">
+		<div class="row" style="text-align: center; margin: auto; color: black"><h3>Log Box</h3></div>
+		<div class="row">
+			<div id="box" style="border-radius: 20px; margin-left:1%">
+				<div style="margin-left: 2%" id="logsInLogBox">
+					Host has created the game. <br>
+					Player 1 has joined the game. <br>
+					Player 2 has joined the game. <br>
+					Player 3 has joined the game. <br>
+				</div>
+			</div>
+			<div id="playersCard" style="border-radius:20px; margin-left:1%;">
+				<div style="margin-left: 2%">
+					Player 1 has 6 cards. <br>
+					Player 2 has 6 cards. <br>
+					Player 3 has 6 cards. <br>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div id="actions" style="margin-top: 2%">
+			<img id="die1" src="../images/11.png" width="50px" height="50px">
+			<img id="die2" src="../images/21.png" width="50px" height="50px">	
+			<div id="diceValue" style="color:white;">
+				
+			</div>
+		</div>
+		<button type="button" id="rollDiceBtn" class="btn btn-light active" onclick="diceRoll()" style="z-index:1;" disabled="true">Roll Dice</button>
+
+		<div id="yourTurn" style="color:white; display: none">
+			It is your turn! Roll the dice.
+		</div>
+
+		<div class="row" style="margin: 0">
+			<div id="cardsInHand" class="col-md-5" style="border-radius: 20px;">
+                <div>
+                    You are Miss Scarlet
+                </div>
+				<div style="margin-left: 2%">
+                    Your cards: <br>
+					Colonel Mustard<br>
+					Candlestick<br>
+					Lead pipe<br>
+					Kitchen<br>
+					Ballroom<br>
+					Rope
+				</div>
+			</div>
+			<div style="border-radius: 20px; margin-left: 1%;"  class="col-md-5">
+				<div style="margin-left: 2%; color:white">
+                    Weapons: <br>
+                    Kitchen: Dagger <br>
+                    Conservatory: Rope <br>
+                    Lounge: Candlestick <br>
+                    Library: Wrench <br>
+                    Dining Room: Revolver <br>
+                    Ballroom: Lead Pipe
+                </div>
+			</div>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+<table id="example" class="display" style="width:50%; background-color:grey">
+        <thead>
+            <tr>
+                <th>Mansion</th>
+                <th>Player 1</th>
+                <th>Player 2</th>
+                <th>Player 3</th>
+                <th>Player 4</th>
+                <th>Player 5</th>
+                <th>Player 6</th>
+                <th>Player 7</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>WHO ?</td>
+            </tr>
+            <tr>
+                <td>Green</td>
+                <td><input type="checkbox" id="row-1-p1" name="row-1-p1"td>
+                <td><input type="checkbox" id="row-1-p2" name="row-1-p2"td>
+                <td><input type="checkbox" id="row-1-p3" name="row-1-p3"td>
+                <td><input type="checkbox" id="row-1-p4" name="row-1-p4"td>
+                <td><input type="checkbox" id="row-1-p5" name="row-1-p5"td>
+                <td><input type="checkbox" id="row-1-p6" name="row-1-p6"td>
+                <td><input type="checkbox" id="row-1-p7" name="row-1-p7"td>
+            </tr>
+            <tr>
+                <td>Mustard</td>
+                <td><input type="checkbox" id="row-2-p1" name="row-2-p1"td>
+                <td><input type="checkbox" id="row-2-p2" name="row-2-p2"td>
+                <td><input type="checkbox" id="row-2-p3" name="row-2-p3"td>
+                <td><input type="checkbox" id="row-2-p4" name="row-2-p4"td>
+                <td><input type="checkbox" id="row-2-p5" name="row-2-p5"td>
+                <td><input type="checkbox" id="row-2-p6" name="row-2-p6"td>
+                <td><input type="checkbox" id="row-2-p7" name="row-2-p7"td>
+            </tr>
+            <tr>
+                <td>Peacock</td>
+                <td><input type="checkbox" id="row-3-p1" name="row-3-p1"td>
+                <td><input type="checkbox" id="row-3-p2" name="row-3-p2"td>
+                <td><input type="checkbox" id="row-3-p3" name="row-3-p3"td>
+                <td><input type="checkbox" id="row-3-p4" name="row-3-p4"td>
+                <td><input type="checkbox" id="row-3-p5" name="row-3-p5"td>
+                <td><input type="checkbox" id="row-3-p6" name="row-3-p6"td>
+                <td><input type="checkbox" id="row-3-p7" name="row-3-p7"td>
+            </tr>
+            <tr>
+                <td>Plum</td>
+                <td><input type="checkbox" id="row-4-p1" name="row-4-p1"td>
+                <td><input type="checkbox" id="row-4-p2" name="row-4-p2"td>
+                <td><input type="checkbox" id="row-4-p3" name="row-4-p3"td>
+                <td><input type="checkbox" id="row-4-p4" name="row-4-p4"td>
+                <td><input type="checkbox" id="row-4-p5" name="row-4-p5"td>
+                <td><input type="checkbox" id="row-4-p6" name="row-4-p6"td>
+                <td><input type="checkbox" id="row-4-p7" name="row-4-p7"td>
+            </tr>
+            <tr>
+                <td>Scarlet</td>
+                <td><input type="checkbox" id="row-5-p1" name="row-5-p1"td>
+                <td><input type="checkbox" id="row-5-p2" name="row-5-p2"td>
+                <td><input type="checkbox" id="row-5-p3" name="row-5-p3"td>
+                <td><input type="checkbox" id="row-5-p4" name="row-5-p4"td>
+                <td><input type="checkbox" id="row-5-p5" name="row-5-p5"td>
+                <td><input type="checkbox" id="row-5-p6" name="row-5-p6"td>
+                <td><input type="checkbox" id="row-5-p7" name="row-5-p7"td>
+            </tr>
+            <tr>
+                <td>Orchid</td>
+                <td><input type="checkbox" id="row-6-p1" name="row-6-p1"td>
+                <td><input type="checkbox" id="row-6-p2" name="row-6-p2"td>
+                <td><input type="checkbox" id="row-6-p3" name="row-6-p3"td>
+                <td><input type="checkbox" id="row-6-p4" name="row-6-p4"td>
+                <td><input type="checkbox" id="row-6-p5" name="row-6-p5"td>
+                <td><input type="checkbox" id="row-6-p6" name="row-6-p6"td>
+                <td><input type="checkbox" id="row-6-p7" name="row-6-p7"td>
+            </tr>
+            <tr>
+                <td>WHAT ?</td>
+            </tr>
+            <tr>
+                <td>Candlestick</td>
+                <td><input type="checkbox" id="row-7-p1" name="row-7-p1"td>
+                <td><input type="checkbox" id="row-7-p2" name="row-7-p2"td>
+                <td><input type="checkbox" id="row-7-p3" name="row-7-p3"td>
+                <td><input type="checkbox" id="row-7-p4" name="row-7-p4"td>
+                <td><input type="checkbox" id="row-7-p5" name="row-7-p5"td>
+                <td><input type="checkbox" id="row-7-p6" name="row-7-p6"td>
+                <td><input type="checkbox" id="row-7-p7" name="row-7-p7"td>
+            </tr>
+            <tr>
+                <td>Dagger</td>
+                <td><input type="checkbox" id="row-8-p1" name="row-8-p1"td>
+                <td><input type="checkbox" id="row-8-p2" name="row-8-p2"td>
+                <td><input type="checkbox" id="row-8-p3" name="row-8-p3"td>
+                <td><input type="checkbox" id="row-8-p4" name="row-8-p4"td>
+                <td><input type="checkbox" id="row-8-p5" name="row-8-p5"td>
+                <td><input type="checkbox" id="row-8-p6" name="row-8-p6"td>
+                <td><input type="checkbox" id="row-8-p7" name="row-8-p7"td>
+            </tr>
+            <tr>
+                <td>Revolver</td>
+                <td><input type="checkbox" id="row-9-p1" name="row-9-p1"td>
+                <td><input type="checkbox" id="row-9-p2" name="row-9-p2"td>
+                <td><input type="checkbox" id="row-9-p3" name="row-9-p3"td>
+                <td><input type="checkbox" id="row-9-p4" name="row-9-p4"td>
+                <td><input type="checkbox" id="row-9-p5" name="row-9-p5"td>
+                <td><input type="checkbox" id="row-9-p6" name="row-9-p6"td>
+                <td><input type="checkbox" id="row-9-p7" name="row-9-p7"td>
+            </tr>
+            <tr>
+                <td>Lead Pipe</td>
+                <td><input type="checkbox" id="row-10-p1" name="row-10-p1"td>
+                <td><input type="checkbox" id="row-10-p2" name="row-10-p2"td>
+                <td><input type="checkbox" id="row-10-p3" name="row-10-p3"td>
+                <td><input type="checkbox" id="row-10-p4" name="row-10-p4"td>
+                <td><input type="checkbox" id="row-10-p5" name="row-10-p5"td>
+                <td><input type="checkbox" id="row-10-p6" name="row-10-p6"td>
+                <td><input type="checkbox" id="row-10-p7" name="row-10-p7"td>
+            </tr>
+            <tr>
+                <td>Rope</td>
+                <td><input type="checkbox" id="row-11-p1" name="row-11-p1"td>
+                <td><input type="checkbox" id="row-11-p2" name="row-11-p2"td>
+                <td><input type="checkbox" id="row-11-p3" name="row-11-p3"td>
+                <td><input type="checkbox" id="row-11-p4" name="row-11-p4"td>
+                <td><input type="checkbox" id="row-11-p5" name="row-11-p5"td>
+                <td><input type="checkbox" id="row-11-p6" name="row-11-p6"td>
+                <td><input type="checkbox" id="row-11-p7" name="row-11-p7"td>
+            </tr>
+            <tr>
+                <td>Wrench</td>
+                <td><input type="checkbox" id="row-12-p1" name="row-12-p1"td>
+                <td><input type="checkbox" id="row-12-p2" name="row-12-p2"td>
+                <td><input type="checkbox" id="row-12-p3" name="row-12-p3"td>
+                <td><input type="checkbox" id="row-12-p4" name="row-12-p4"td>
+                <td><input type="checkbox" id="row-12-p5" name="row-12-p5"td>
+                <td><input type="checkbox" id="row-12-p6" name="row-12-p6"td>
+                <td><input type="checkbox" id="row-12-p7" name="row-12-p7"td>
+            </tr>
+            <tr>
+                <td>WHERE ?</td>
+            </tr>
+            <tr>
+                <td>Conservatory</td>
+                <td><input type="checkbox" id="row-13-p1" name="row-13-p1"td>
+                <td><input type="checkbox" id="row-13-p2" name="row-13-p2"td>
+                <td><input type="checkbox" id="row-13-p3" name="row-13-p3"td>
+                <td><input type="checkbox" id="row-13-p4" name="row-13-p4"td>
+                <td><input type="checkbox" id="row-13-p5" name="row-13-p5"td>
+                <td><input type="checkbox" id="row-13-p6" name="row-13-p6"td>
+                <td><input type="checkbox" id="row-13-p7" name="row-13-p7"td>
+            </tr>
+            <tr>
+                <td>Ballroom</td>
+                <td><input type="checkbox" id="row-14-p1" name="row-14-p1"td>
+                <td><input type="checkbox" id="row-14-p2" name="row-14-p2"td>
+                <td><input type="checkbox" id="row-14-p3" name="row-14-p3"td>
+                <td><input type="checkbox" id="row-14-p4" name="row-14-p4"td>
+                <td><input type="checkbox" id="row-14-p5" name="row-14-p5"td>
+                <td><input type="checkbox" id="row-14-p6" name="row-14-p6"td>
+                <td><input type="checkbox" id="row-14-p7" name="row-14-p7"td>
+            </tr>
+            <tr>
+                <td>Kitchen</td>
+                <td><input type="checkbox" id="row-15-p1" name="row-15-p1"td>
+                <td><input type="checkbox" id="row-15-p2" name="row-15-p2"td>
+                <td><input type="checkbox" id="row-15-p3" name="row-15-p3"td>
+                <td><input type="checkbox" id="row-15-p4" name="row-15-p4"td>
+                <td><input type="checkbox" id="row-15-p5" name="row-15-p5"td>
+                <td><input type="checkbox" id="row-15-p6" name="row-15-p6"td>
+                <td><input type="checkbox" id="row-15-p7" name="row-15-p7"td>
+            </tr>
+            <tr>
+                <td>Dining Room</td>
+                <td><input type="checkbox" id="row-16-p1" name="row-16-p1"td>
+                <td><input type="checkbox" id="row-16-p2" name="row-16-p2"td>
+                <td><input type="checkbox" id="row-16-p3" name="row-16-p3"td>
+                <td><input type="checkbox" id="row-16-p4" name="row-16-p4"td>
+                <td><input type="checkbox" id="row-16-p5" name="row-16-p5"td>
+                <td><input type="checkbox" id="row-16-p6" name="row-16-p6"td>
+                <td><input type="checkbox" id="row-16-p7" name="row-16-p7"td>
+            </tr>
+            <tr>
+                <td>Lounge</td>
+                <td><input type="checkbox" id="row-17-p1" name="row-17-p1"td>
+                <td><input type="checkbox" id="row-17-p2" name="row-17-p2"td>
+                <td><input type="checkbox" id="row-17-p3" name="row-17-p3"td>
+                <td><input type="checkbox" id="row-17-p4" name="row-17-p4"td>
+                <td><input type="checkbox" id="row-17-p5" name="row-17-p5"td>
+                <td><input type="checkbox" id="row-17-p6" name="row-17-p6"td>
+                <td><input type="checkbox" id="row-17-p7" name="row-17-p7"td>
+            </tr>
+            <tr>
+                <td>Hall</td>
+                <td><input type="checkbox" id="row-18-p1" name="row-18-p1"td>
+                <td><input type="checkbox" id="row-18-p2" name="row-18-p2"td>
+                <td><input type="checkbox" id="row-18-p3" name="row-18-p3"td>
+                <td><input type="checkbox" id="row-18-p4" name="row-18-p4"td>
+                <td><input type="checkbox" id="row-18-p5" name="row-18-p5"td>
+                <td><input type="checkbox" id="row-18-p6" name="row-18-p6"td>
+                <td><input type="checkbox" id="row-18-p7" name="row-18-p7"td>
+            </tr>
+            <tr>
+                <td>Study</td>
+                <td><input type="checkbox" id="row-19-p1" name="row-19-p1"td>
+                <td><input type="checkbox" id="row-19-p2" name="row-19-p2"td>
+                <td><input type="checkbox" id="row-19-p3" name="row-19-p3"td>
+                <td><input type="checkbox" id="row-19-p4" name="row-19-p4"td>
+                <td><input type="checkbox" id="row-19-p5" name="row-19-p5"td>
+                <td><input type="checkbox" id="row-19-p6" name="row-19-p6"td>
+                <td><input type="checkbox" id="row-19-p7" name="row-19-p7"td>
+            </tr>
+            <tr>
+                <td>Library</td>
+                <td><input type="checkbox" id="row-20-p1" name="row-20-p1"td>
+                <td><input type="checkbox" id="row-20-p2" name="row-20-p2"td>
+                <td><input type="checkbox" id="row-20-p3" name="row-20-p3"td>
+                <td><input type="checkbox" id="row-20-p4" name="row-20-p4"td>
+                <td><input type="checkbox" id="row-20-p5" name="row-20-p5"td>
+                <td><input type="checkbox" id="row-20-p6" name="row-20-p6"td>
+                <td><input type="checkbox" id="row-20-p7" name="row-20-p7"td>
+            </tr>
+            <tr>
+                <td>Billiard Room</td>
+                <td><input type="checkbox" id="row-21-p1" name="row-21-p1"td>
+                <td><input type="checkbox" id="row-21-p2" name="row-21-p2"td>
+                <td><input type="checkbox" id="row-21-p3" name="row-21-p3"td>
+                <td><input type="checkbox" id="row-21-p4" name="row-21-p4"td>
+                <td><input type="checkbox" id="row-21-p5" name="row-21-p5"td>
+                <td><input type="checkbox" id="row-21-p6" name="row-21-p6"td>
+                <td><input type="checkbox" id="row-21-p7" name="row-21-p7"td>
+            </tr>
+        </tbody>
+    </table>
+		
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<style type="text/css">
+	.boardTile{
+		width: 23px;
+		height: 23px;
+		background-color: orange;
+		border: 1px solid;
+	}
+
+	.canMove{
+		border: 3px solid green;
+	}
+
+	#player{
+		width: 23px;
+		height: 22px;
+		left: 252px;
+		top: 593px;
+	}
+
+    table {
+        color:white;
+    }
+
+	.weapon{
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		z-index: 1;
+	}
+
+	#candleStick{
+		left: 320px;
+		top: 80px;
+	}
+
+	#dagger{
+		left: 95px;
+		top: 35px;
+	}
+
+	#pipe{
+		left: 570px;
+		top:  230px;
+	}
+
+	#revolver{
+		left: 570px;
+		top:380px;
+	}
+
+	#rope{
+		left: 535px;
+		top: 470px;
+	}
+
+	#wrench{
+		left: 110px;
+		top: 520px;
+	}
+
+	#logBox{
+		border-radius: 20px;
+		background-color: grey;
+		opacity: 70%;
+	}
+
+	#box{
+		background-color: white;
+		width: 300px;
+		height: 300px;
+		border-radius: 40px;
+	}
+
+	#playersCard{
+		background-color: white;
+		width: 300px;
+		height: 300px
+		border-radius: 40px;
+	}
+
+	#cardsInHand{
+		background-color: white;
+		margin-top: 1%;
+		width: 300px;
+		height: 200px;
+		border-radius: 40px;
+	}
+</style>
+
+<script type="text/javascript">
+	var yourTurn = document.getElementById("yourTurn");
+	var rollDiceBtn = document.getElementById("rollDiceBtn");
+	var inRoom = false;
+
+	var game = "{{game}}";
+	game = JSON.parse(game.replace(/&quot;/g,'"'));
+
+	var gameID = game._id;
+	console.log(game);
+
+	var dice1Value = 0;
+	var dice2Value = 0;
+
+	characters = [
+    	"Miss Scarlet",
+    	"Colonel Mustard",
+    	"Mrs. White",
+    	"Reverend Green",
+    	"Mrs. Peacock",
+    	"Professor Plum",
+    ];
+
+    weapons = [
+    	"Candlestick",
+    	"Dagger",
+    	"Lead Pipe",
+    	"Revolver",
+    	"Rope",
+    	"Wrench",
+    ];
+
+    rooms = [
+		"Kitchen",
+		"Ballroom",
+		"Conservatory",
+		"Billiard Room",
+		"Library",
+		"Study",
+		"Hall",
+		"Lounge",
+		"Dining Room",
+    ];
+
+    player1Hand = [];
+	player2Hand = [];
+    player3Hand = [];
+
+    player1Character = characters[0];
+    player2Character = characters[1];
+    player3Character = characters[2];
+    
+ 	secretCharacterIndex = Math.floor(Math.random()*6);
+ 	secretCharacter = characters[secretCharacterIndex];
+ 	characters.splice(secretCharacterIndex, 1);
+
+ 	secretWeaponIndex = Math.floor(Math.random()*6);
+ 	secretWeapon = weapons[secretWeaponIndex];
+ 	weapons.splice(secretWeaponIndex, 1);
+
+ 	secretRoomIndex = Math.floor(Math.random()*8);
+ 	secretRoom = rooms[secretRoomIndex];
+ 	rooms.splice(secretRoomIndex, 1);
+
+ 	secretPack = [secretCharacter, secretWeapon, secretRoom];
+
+ 	fullCardDeck = characters.concat(rooms.concat(weapons));
+
+var HttpClient = function() {
+	    this.get = function(aUrl, aCallback) {
+	        var anHttpRequest = new XMLHttpRequest();
+	        anHttpRequest.onreadystatechange = function() { 
+	            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+	                aCallback(anHttpRequest.responseText);
+	        }
+
+	        anHttpRequest.open( "GET", aUrl, true );            
+	        anHttpRequest.send( null );
+	    }
+	}
+
+	var putHttpClient = function() {
+	    this.get = function(aUrl, aCallback) {
+	        var anHttpRequest = new XMLHttpRequest();
+	        anHttpRequest.onreadystatechange = function() { 
+	            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+	                aCallback(anHttpRequest.responseText);
+	        }
+
+	        anHttpRequest.open( "PUT", aUrl, true );            
+	        anHttpRequest.send( null );
+	    }
+	}
+
+
+	function shuffle(array){
+		array.sort(() => Math.random() - 0.5);
+	}
+
+	function distributeCards(deck){
+		handSize = Math.floor(deck.length/numPlayers);
+	}
+
+	function diceRoll(){
+		interval=setInterval(rolldice,2)
+		setTimeout(stopDice, 500);
+	}
+
+	function rolldice(){
+		var value1 = Math.floor( 1 + Math.random() * 6 );
+		var value2 = Math.floor( 1 + Math.random() * 6 );
+		var dice1 = document.getElementById("die1");
+		var dice2 = document.getElementById("die2");
+		dice1.src="../images/1"+value1+".png";
+		dice2.src="../images/2"+value2+".png";
+		    
+		dice1Value = value1;
+		dice2Value = value2;
+
+		var p = document.getElementById("diceValue");
+	}
+	    
+	function stopDice(){
+		clearInterval(interval);
+		diceValue = (dice1Value+dice2Value);
+		makeMove(diceValue, currentX, currentY);
+		updateTurn();
+	}
+
+	function createBoard(){
+		tiles = [];
+		boardDiv = document.getElementById("board");
+
+
+		for(j = 0; j < 25; j++){
+			var row = document.createElement("div");
+			row.setAttribute('class', 'row');
+			row.style.margin = 0;
+
+			for(i = 0; i < 25; i++){
+				if(i >= 0 && i <= 5 && j >= 0 && j <= 4){
+					tileLocation = "K"; //Kitchen
+				}else if(i >= 10 && i <= 14 && j >= 0 && j <= 1){
+					tileLocation = "BA"; //Ball Room
+				}else if(i >= 8 && i <= 16 && j >= 2 && j <= 5){
+					tileLocation = "BA";
+				}else if(i >= 9 && i <= 14 && j == 6){
+					tileLocation = "BA";
+				}else if(i >= 19 && i <= 24 && j >= 0 && j <= 4){
+					tileLocation = "C"; //Conservatory
+				}else if(i >= 0 && i <= 5 && j >= 7 && j <= 11){
+					tileLocation = "D"; //Dining Room
+				}else if(i == 6 && j >= 8 && j <= 11){
+					tileLocation = "D";
+				}else if(i >= 0 && i <= 6 && j >= 13 && j <= 17){
+					tileLocation = "T"; //Trophy Room
+				}else if(i == 7 && j >= 14 && j <= 16){
+					tileLocation = "T";
+				}else if(i >= 0 && i <= 5 && j >= 20 && j <= 24){
+					tileLocation = "LG"; //Lounge
+				}else if(i == 6 && j >= 21 && j <= 24){
+					tileLocation = "LG";
+				}else if(i == 9 && j >= 20 && j <= 22){
+					tileLocation = "H"; //Hall
+				}else if(i >= 10 && i <= 14 && j >= 18 && j <= 24){
+					tileLocation = "H";
+				}else if(i == 15 && j >= 20 && j <= 22){
+					tileLocation = "H";
+				}else if(i == 18 && j >= 21 && j <= 24){
+					tileLocation = "S"; //Study
+				}else if(i >= 19 && i <= 24 && j >= 20 && j <= 24){
+					tileLocation = "S";
+				}else if(i == 17 && j >= 14 && j <= 16){
+					tileLocation = "LB"; //Library
+				}else if(i >= 18 && i <= 24 && j >= 13 && j <= 17){
+					tileLocation = "LB";
+				}else if(i == 18 && j >= 8 && j <= 11){
+					tileLocation = "BL"; //Billiard Room
+				}else if(i >= 19 && i <= 24 && j >= 7 && j <= 11){
+					tileLocation = "BL"; //Billiard Room
+				}else if(i >= 19 && i <= 24 && j >= 0 && j <= 4){
+					tileLocation = "C"; //Conservatory 
+				}else if(i >= 10 && i <= 14 && j >= 9 && j <= 15){
+					tileLocation = "NA"; //Can't walk
+				}else{
+					tileLocation = "P"//Pathway
+				}
+
+				var id = "tile-"+i+"-"+j;
+
+
+				var tileDiv = document.createElement("div");
+				tileDiv.setAttribute('class', 'boardTile');
+				tileDiv.setAttribute('id', id);
+				tileDiv.setAttribute('location', tileLocation);
+
+				if(game.player1X == i && game.player1Y == j){
+					tileDiv.style.backgroundColor = "red";
+				}
+
+
+				tileDiv.innerHTML = tileLocation;
+				row.appendChild(tileDiv);
+			}
+
+			board.appendChild(row);
+		}
+
+		document.getElementById("tile-6-4").style.backgroundColor = "grey";
+		document.getElementById("tile-6-4").setAttribute("door", "K");
+		document.getElementById("tile-7-5").style.backgroundColor = "grey";
+		document.getElementById("tile-7-5").setAttribute("door", "BA");
+		document.getElementById("tile-10-7").style.backgroundColor = "grey";
+		document.getElementById("tile-10-7").setAttribute("door", "BA");
+		document.getElementById("tile-14-7").style.backgroundColor = "grey";
+		document.getElementById("tile-14-7").setAttribute("door", "BA");
+		document.getElementById("tile-17-5").style.backgroundColor = "grey";
+		document.getElementById("tile-17-5").setAttribute("door", "BA");
+		document.getElementById("tile-18-4").style.backgroundColor = "grey";
+		document.getElementById("tile-18-4").setAttribute("door", "C");
+		document.getElementById("tile-7-8").style.backgroundColor = "grey";
+		document.getElementById("tile-7-8").setAttribute("door", "D");
+		document.getElementById("tile-1-12").style.backgroundColor = "grey";
+		document.getElementById("tile-1-12").setAttribute("door", "D");
+		document.getElementById("tile-3-12").style.backgroundColor = "grey";
+		document.getElementById("tile-3-12").setAttribute("door", "T");
+		document.getElementById("tile-6-18").style.backgroundColor = "grey";
+		document.getElementById("tile-6-18").setAttribute("door", "T");
+		document.getElementById("tile-8-14").style.backgroundColor = "grey";
+		document.getElementById("tile-8-14").setAttribute("door", "T");
+		document.getElementById("tile-6-20").style.backgroundColor = "grey";
+		document.getElementById("tile-6-20").setAttribute("door", "LG");
+		document.getElementById("tile-9-19").style.backgroundColor = "grey";
+		document.getElementById("tile-9-19").setAttribute("door", "H");
+		document.getElementById("tile-11-17").style.backgroundColor = "grey";
+		document.getElementById("tile-11-17").setAttribute("door", "H");
+		document.getElementById("tile-12-17").style.backgroundColor = "grey";
+		document.getElementById("tile-12-17").setAttribute("door", "H");
+		document.getElementById("tile-13-17").style.backgroundColor = "grey";
+		document.getElementById("tile-13-17").setAttribute("door", "H");
+		document.getElementById("tile-15-19").style.backgroundColor = "grey";
+		document.getElementById("tile-15-19").setAttribute("door", "H");
+		document.getElementById("tile-18-20").style.backgroundColor = "grey";
+		document.getElementById("tile-19-20").setAttribute("door", "S");
+		document.getElementById("tile-18-18").style.backgroundColor = "grey";
+		document.getElementById("tile-18-18").setAttribute("door", "LB");
+		document.getElementById("tile-16-15").style.backgroundColor = "grey";
+		document.getElementById("tile-16-15").setAttribute("door", "LB");
+		document.getElementById("tile-23-12").style.backgroundColor = "grey";
+		document.getElementById("tile-23-12").setAttribute("door", "BL");
+		document.getElementById("tile-21-12").style.backgroundColor = "grey";
+		document.getElementById("tile-21-12").setAttribute("door", "LB");
+		document.getElementById("tile-17-8").style.backgroundColor = "grey";
+		document.getElementById("tile-17-8").setAttribute("door", "BL");
+
+
+		document.getElementById("tile-1-20").style.backgroundColor = "yellow";
+		document.getElementById("tile-1-4").style.backgroundColor = "yellow";
+		document.getElementById("tile-23-4").style.backgroundColor = "yellow";
+		document.getElementById("tile-23-20").style.backgroundColor = "yellow";
+
+
+        document.getElementById("tile-0-19").style.backgroundColor = "green";
+        document.getElementById("tile-0-5").style.backgroundColor = "purple";
+           
+	}
+
+	function setupBoard(){
+		window.currentX = game.player1X;
+		window.currentY = game.player1Y;
+	}
+
+	function makeMove(diceValue, playerXLocation, playerYLocation){
+		currentRoom = document.getElementById("tile-"+currentX+"-"+currentY);
+        console.log(currentRoom);
+         		
+		if(inRoom){
+			if(currentRoom.getAttribute("location") == "LG"){
+				usePassage = confirm("Do you want to use the secret passage to the Conservatory?");
+				if(usePassage){
+					playerXLocation = 21;
+					playerYLocation = 2;
+					movePlayer(playerXLocation, playerYLocation);
+					return;
+				}else{
+					inRoom = false;
+					makeMove(diceValue, 6, 20);
+				}
+			}else if(currentRoom.getAttribute("location") == "C"){
+				if(confirm("Do you want to use the secret passage to the Lounge?")){
+					playerXLocation = 2;
+					playerYLocation = 22;
+					movePlayer(playerXLocation, playerYLocation);
+					return;
+				}else{
+					inRoom = false;
+					makeMove(diceValue, 18, 4);
+				}
+			}else if(currentRoom.getAttribute("location") == "K"){
+				if(confirm("Do you want to use the secret passage to the Study?")){
+					playerXLocation = 20;
+					playerYLocation = 22;
+					movePlayer(playerXLocation, playerYLocation);
+					return;
+				}else{
+					inRoom = false;
+					makeMove(diceValue, 6, 4);
+				}
+			}else if(currentRoom.getAttribute("location") == "S"){
+				if(confirm("Do you want to use the secret passage to the Kitchen?")){
+					playerXLocation = 2;
+					playerYLocation = 2;
+					movePlayer(playerXLocation, playerYLocation);
+					return;
+				}else{
+					inRoom = false;
+					makeMove(diceValue, 18, 20);
+				}
+			}
+		}
+
+
+		var counter1 = 0;
+		var counter2 = 0;
+		var counter3 = 0;
+		var counter4 = 0;
+
+		for(var i = playerXLocation; i >= playerXLocation - diceValue && i >= 0; i--){
+			for(var j = playerYLocation; j >= playerYLocation - diceValue + counter1 && j >= 0; j--){
+                if(i == 0 && j == 19){
+                    continue;
+                }
+
+                if(i == 0 && j == 5){
+                    continue;
+                }
+				var currentTile = document.getElementById("tile-"+i+"-"+j);
+
+				if(currentTile.getAttribute("location") == "P"){
+					currentTile.setAttribute("class", "boardTile canMove");
+					currentTile.setAttribute("onclick", "movePlayer("+i+", "+j+")");
+				}else{
+
+				}
+			}
+
+			counter1++;
+		}
+
+		for(var i = playerXLocation; i <= playerXLocation + diceValue && i <= 24; i++){
+			for(var j = playerYLocation; j >= playerYLocation - diceValue + counter2 && j >= 0; j--){
+                if(i == 0 && j == 19){
+                    continue;
+                }
+
+                if(i == 0 && j == 5){
+                    continue;
+                }
+				var currentTile = document.getElementById("tile-"+i+"-"+j);
+				if(currentTile.getAttribute("location") == "P"){
+					currentTile.setAttribute("class", "boardTile canMove");
+					currentTile.setAttribute("onclick", "movePlayer("+i+", "+j+")");
+				}else{
+				}
+			}
+
+			counter2++;
+		}
+
+		for(var i = playerXLocation; i >= playerXLocation - diceValue && i >= 0; i--){
+			for(var j = playerYLocation; j <= playerYLocation + diceValue - counter3 && j <= 24; j++){
+                if(i == 0 && j == 19){
+                    continue;
+                }
+
+                if(i == 0 && j == 5){
+                    continue;
+                }
+				var currentTile = document.getElementById("tile-"+i+"-"+j);
+				if(currentTile.getAttribute("location") == "P"){
+					currentTile.setAttribute("class", "boardTile canMove");
+					currentTile.setAttribute("onclick", "movePlayer("+i+", "+j+")");	
+				}else{
+				}
+			}
+
+			counter3++;
+		}
+
+		for(var i = playerXLocation; i <= playerXLocation + diceValue && i <= 24; i++){
+			for(var j = playerYLocation; j <= playerYLocation + diceValue - counter4 && j <= 24; j++){
+                if(i == 0 && j == 19){
+                    continue;
+                }
+
+                if(i == 0 && j == 5){
+                    continue;
+                }
+				var currentTile = document.getElementById("tile-"+i+"-"+j);
+				if(currentTile.getAttribute("location") == "P"){
+					currentTile.setAttribute("class", "boardTile canMove");					
+					currentTile.setAttribute("onclick", "movePlayer("+i+", "+j+")");
+				}else{
+				}
+			}
+
+			counter4++;
+		}
+	}
+
+	function movePlayer(x,y){
+		currentTile = document.getElementById("tile-"+currentX+"-"+currentY);
+		currentTile.style.backgroundColor = "orange";
+
+		updatePlayerPosition(x,y);
+
+		toMove = document.getElementById("tile-"+x+"-"+y);
+
+		if(toMove.hasAttribute("door")){
+			door = toMove.getAttribute("door");
+
+			if(door == "K"){
+				x = 2;
+				y = 2;
+			}else if(door == "D"){
+				x = 2;
+				y = 9;
+			}else if(door == "T"){
+				x = 2;
+				y = 14;
+			}else if(door == "LG"){
+				x = 2;
+				y = 22;
+			}else if(door == "BA"){
+				x = 11;
+				y = 3;
+			}else if(door == "H"){
+				x = 12;
+				y = 21;
+			}else if(door == "C"){
+				x = 21;
+				y = 2;
+			}else if(door == "BL"){
+				x = 21;
+				y = 9;
+			}else if(door == "LB"){
+				x = 21;
+				y = 15;
+			}else if(door == "S"){
+				x = 20;
+				y = 22;
+			}
+
+			toMove = document.getElementById("tile-"+x+"-"+y);
+			inRoom = true;
+		}
+
+		toMove.style.backgroundColor = "red";
+
+		var allTilesWithCanMove = document.querySelectorAll(".canMove");
+
+		for(var i = 0; i < allTilesWithCanMove.length; i++){
+			allTilesWithCanMove[i].removeAttribute("onclick");
+			allTilesWithCanMove[i].removeAttribute("class");
+			allTilesWithCanMove[i].setAttribute("class", "boardTile");
+		}
+
+		currentX = x;
+		currentY = y;
+	}
+
+	function getTurn(){
+		var client = new HttpClient();
+		client.get("/game/"+gameID+"/turn", function(response) {
+			integerResponse = response.replace(/"/g, "");
+			integerResponse = parseInt(integerResponse);
+
+			if(integerResponse == 1){
+				yourTurn.style.display = "block";
+				rollDiceBtn.disabled = false;
+			}else{
+                yourTurn.style.display = "none";
+                rollDiceBtn.disabled = true;
+            }
+		});	
+	}
+
+	function updateTurn(){
+		var client = new putHttpClient();
+		client.get("/game/"+gameID+"/updateTurn", function(response) {
+			yourTurn.style.display = "none";
+			rollDiceBtn.disabled = true;
+			
+		});
+	}
+
+	function updatePlayerPosition(x, y){
+		var client = new putHttpClient();
+		client.get("/game/"+gameID+"/updatePlayerPosition/"+x+"/"+y, function(response) {
+
+		});
+	}
+
+	window.setInterval(getTurn, 500);
+	// getTurn();
+	createBoard();
+	setupBoard();
+</script>

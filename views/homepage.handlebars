@@ -1,0 +1,530 @@
+<h1 class="text-center mb-3"><img src="images/logo.png" ></h1>
+
+<div class="text-center" style="margin-top: 10%;">
+	<button type="button" class="btn1 btn-primary btn-lg">Join A Game</button>
+	<button id="createGame" type="button" class="btn btn-primary btn-lg">Create Game</button>
+	<button type="button" class="btn2 btn-primary btn-lg">Settings</button>
+</div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <form style="width: 400px; margin: auto;">
+	  <div class="form-group">
+	    <label for="gameName">Game Name</label>
+	    <input type="text" class="form-control" id="gameName" aria-describedby="emailHelp" placeholder="Enter name" required="required">
+	  </div>
+	  <div class="form-group">
+	    <label for="NumberOfPlayers">Number Of Players</label>
+	    <input type="number" class="form-control" id="numPlayers" min="2" max="5" required="required">
+	  </div>
+	  <div class="autocomplete form-group" style="width:300px;">
+	  	<div class="row" style="margin: 0;">
+	    	<input id="friendInput" class="form-control col-md-7" type="text" name="friendInvite" placeholder="Search friend list" autocomplete="off">
+	  		<div class="offset-md-1"></div>
+	    	<button id="inviteFriend" class="btn btn-primary col-md-4" type="button" onclick="invite()">Invite</button>
+	  	</div>
+	  </div>
+
+	  <div id="friendList">
+	  	
+	  </div>
+
+	  <button type="button" class="btn btn-primary" onclick="move()" style="margin-top: 1%;">Create Game</button>
+	  <button type="button" class="btn btn-danger" style="margin-top: 1%;">Terminate Game</button>
+
+	</form>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}
+    
+body {
+        background-image: url("images/setup.jpg");
+    
+    }
+
+body {
+    letter-spacing: 3px;
+    color: blue
+}
+    
+.btn {
+    width: 250px;
+  transition-duration: 0.4s;
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  border-radius: 12px;
+    display: block;
+    margin: auto;
+}
+
+.btn:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: 2px solid #555555;
+}
+    
+.btn1 {
+    width: 250px;
+  transition-duration: 0.4s;
+  background-color: white;
+  color: black;
+  border: 2px solid #f44336;
+  border-radius: 12px;
+    display: block;
+    margin: auto;
+}
+
+.btn1:hover {
+  background-color: #f44336;
+  color: white;
+  border: 2px solid #555555;
+}
+
+.btn2 {
+    width: 250px;
+  transition-duration: 0.4s;
+    float: center;
+  background-color: white;
+  color: black;
+  border: 2px solid #FFFF00;
+  border-radius: 12px;
+    display: block;
+    margin: auto;
+}
+
+.btn2:hover {
+  background-color: #FFFF00;
+  color: white;
+  border: 2px solid #555555; 
+
+}
+#friendList{
+	border: 1px solid;
+	height: 200px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: grey;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+</style>
+
+<script type="text/javascript">
+numPlayers = 0;
+playersToInvite = [];
+
+characters = [
+	"Miss Scarlet",
+	"Colonel Mustard",
+	"Mrs. White",
+	"Reverend Green",
+	"Mrs. Peacock",
+	"Professor Plum",
+];
+
+weapons = [
+	"Candlestick",
+	"Dagger",
+	"Lead Pipe",
+	"Revolver",
+	"Rope",
+	"Wrench",
+];
+
+rooms = [
+	"Kitchen",
+	"Ballroom",
+	"Conservatory",
+	"Billiard Room",
+	"Library",
+	"Study",
+	"Hall",
+	"Lounge",
+	"Dining Room",
+];
+
+
+function setNumPlayers(){
+	numPlayers = document.getElementById('NumberOfPlayers').value;
+}
+
+function updateNumPlayers(){
+	numPlayersElement = document.getElementById('NumberOfPlayers');
+
+	numPlayers = numPlayersElement.value;
+	console.log(numPlayers);
+}
+
+var postHttpClient = function() {
+	    this.get = function(aUrl, aCallback) {
+	        var anHttpRequest = new XMLHttpRequest();
+	        anHttpRequest.onreadystatechange = function() { 
+	            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+	                aCallback(anHttpRequest.responseText);
+	        }
+
+	        anHttpRequest.open( "POST", aUrl, true );            
+	        anHttpRequest.send( null );
+	    }
+	}
+
+
+function move(){	
+	gameName = document.getElementById('gameName').value;
+	numPlayers = document.getElementById('numPlayers').value;
+
+	if(gameName.value == ""){
+		alert("You need to have a name for the game.");
+		return;
+	}
+
+
+	
+	if(numPlayers > playersToInvite.length){
+		if (confirm('There are not enough players, are you sure you want to continue?')) {
+			var client = new postHttpClient();
+			client.get("/game/create/"+gameName+"/"+numPlayers, function(response) {
+				newId = response.replace(/"/g, "");
+				window.location.replace("http://localhost:3000/game/"+newId);
+			});
+		}
+	}else{
+		var client = new postHttpClient();
+			client.get("/game/create/"+gameName+"/"+numPlayers, function(response) {
+				newId = response.replace(/"/g, "");
+				window.location.replace("http://localhost:3000/game/"+newId);
+			});
+	}
+
+	if(numPlayers == 0){
+		return;
+	}
+
+	
+}
+
+function invite(){
+	friendNameElement = document.getElementById("friendInput");
+	friendListElement = document.getElementById("friendList");
+
+	friendName = friendNameElement.value;
+
+	if (friendName.length == 0) {
+		return;
+	}
+
+	if(!friendList.includes(friendName)){
+		return;
+	}
+
+	playersToInvite.push(friendName);
+	friendList = removeA(friendList, friendName);
+	
+	friendNameElement.value = "";
+	
+	friendListElement.innerHTML += 
+	"<div id='"+friendName+"' class='friend row' style='margin-left: 1%; margin-top: 1%'>"+
+		"<h6>"+friendName+"</h6>"+
+		"<button onclick='deleteFriend(\""+friendName+"\")' style='border: 0px; width: 100px; position: absolute; left: 57%' class='btn' type='button'>Delete</button></div>";
+}
+
+function deleteFriend(friend){
+	var friendDiv = document.getElementById(friend);
+
+	friendDiv.remove();
+	playersToInvite = removeA(playersToInvite, friend);
+
+	console.log(playersToInvite);
+}
+
+function removeA(arr) {
+	    var what, a = arguments, L = a.length, ax;
+	    while (L > 1 && arr.length) {
+	        what = a[--L];
+	        while ((ax= arr.indexOf(what)) !== -1) {
+	            arr.splice(ax, 1);
+	        }
+	    }
+
+	    return arr;
+    }
+  	
+	function autocomplete(inp, arr) {
+	  /*the autocomplete function takes two arguments,
+	  the text field element and an array of possible autocompleted values:*/
+	  var currentFocus;
+	  /*execute a function when someone writes in the text field:*/
+	  inp.addEventListener("input", function(e) {
+	      var a, b, i, val = this.value;
+	      /*close any already open lists of autocompleted values*/
+	      closeAllLists();
+	      if (!val) { return false;}
+	      currentFocus = -1;
+	      /*create a DIV element that will contain the items (values):*/
+	      a = document.createElement("DIV");
+	      a.setAttribute("id", this.id + "autocomplete-list");
+	      a.setAttribute("class", "autocomplete-items");
+	      /*append the DIV element as a child of the autocomplete container:*/
+	      this.parentNode.appendChild(a);
+	      /*for each item in the array...*/
+	      for (i = 0; i < arr.length; i++) {
+	        /*check if the item starts with the same letters as the text field value:*/
+	        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+	          /*create a DIV element for each matching element:*/
+	          b = document.createElement("DIV");
+	          /*make the matching letters bold:*/
+	          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+	          b.innerHTML += arr[i].substr(val.length);
+	          /*insert a input field that will hold the current array item's value:*/
+	          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+	          /*execute a function when someone clicks on the item value (DIV element):*/
+	          b.addEventListener("click", function(e) {
+	              /*insert the value for the autocomplete text field:*/
+	              inp.value = this.getElementsByTagName("input")[0].value;
+	              /*close the list of autocompleted values,
+	              (or any other open lists of autocompleted values:*/
+	              closeAllLists();
+	          });
+	          a.appendChild(b);
+	        }
+	      }
+	  });
+	
+	  /*execute a function presses a key on the keyboard:*/
+	  inp.addEventListener("keydown", function(e) {
+	      var x = document.getElementById(this.id + "autocomplete-list");
+	      if (x) x = x.getElementsByTagName("div");
+	      if (e.keyCode == 40) {
+	        /*If the arrow DOWN key is pressed,
+	        increase the currentFocus variable:*/
+	        currentFocus++;
+	        /*and and make the current item more visible:*/
+	        addActive(x);
+	      } else if (e.keyCode == 38) { //up
+	        /*If the arrow UP key is pressed,
+	        decrease the currentFocus variable:*/
+	        currentFocus--;
+	        /*and and make the current item more visible:*/
+	        addActive(x);
+	      } else if (e.keyCode == 13) {
+	        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+	        e.preventDefault();
+	        if (currentFocus > -1) {
+	          /*and simulate a click on the "active" item:*/
+	          if (x) x[currentFocus].click();
+	        }
+	      }
+	  });
+
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the country names in the world:*/
+var friendList = ["Ali", "John", "Chandler", "Riley", "Hannah", "Montserrat", "Aneeta", "Stephanie", "Kayla", "Melissa"];
+
+autocomplete(document.getElementById("friendInput"), friendList);
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("createGame");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
